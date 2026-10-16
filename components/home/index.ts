@@ -1,0 +1,12 @@
+export { default as HeroSection } from "./HeroSection";
+export { default as BrandPillars } from "./BrandPillars";
+export { default as BrandStorySection } from "./BrandStorySection";
+export { default as HomeServicesPreview } from "./HomeServicesPreview";
+export { default as StylistStructureSection } from "./StylistStructureSection";
+export { default as TheDifferenceSection } from "./TheDifferenceSection";
+export { default as HomeLookbookSection } from "./HomeLookbookSection";
+export { default as HomeTeamSection } from "./HomeTeamSection";
+export { default as HomePlansSection } from "./HomePlansSection";
+export { default as HomeReviewsSection } from "./HomeReviewsSection";
+export { default as HomeLocationSection } from "./HomeLocationSection";
+export { default as HomeCtaSection } from "./HomeCtaSection";

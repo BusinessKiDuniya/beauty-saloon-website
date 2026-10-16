@@ -1,69 +1,136 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+import { useClient } from "@/context/ClientContext";
+import {
+  businessInfo as defaultBusinessInfo,
+  serviceCategories,
+  teamMembers,
+  pranaPlans,
+  clientReviews,
+  lookbookItems
+} from "@/data/siteData";
+import {
+  BookingDiscovery,
+  NewbieGuide,
+  SalonAmenities,
+  LuxuryMarquee,
+  BeforeAfterSlider,
+  BotanicalAlchemy,
+  SanctuaryExperienceTimeline,
+  DoshaWellnessQuiz,
+  SanctuaryAmbienceBar
+} from "@/components";
+import {
+  HeroSection,
+  BrandPillars,
+  BrandStorySection,
+  HomeServicesPreview,
+  StylistStructureSection,
+  TheDifferenceSection,
+  HomeLookbookSection,
+  HomeTeamSection,
+  HomePlansSection,
+  HomeReviewsSection,
+  HomeLocationSection,
+  HomeCtaSection
+} from "@/components/home";
+
+export default function HomePage() {
+  const { client } = useClient();
+  const info = client?.businessInfo || defaultBusinessInfo;
+  const shortName = client?.shortName || "Prana";
+
+  const hero = client?.hero || {
+    badge: "BEAUTY • WELLNESS • INTENTION",
+    titleLine1: "Beauty That",
+    titleItalic: "Feels Like You.",
+    subtitle: `Thoughtful beauty services and restorative wellness experiences, shaped around your individual needs in ${info.address.city}, ${info.address.state}.`,
+    heroImage: "/images/luxury_salon_sanctuary.jpg",
+    secondaryImage: "/images/lookbook_2.jpg",
+    stats: [
+      { number: "95%", label: "Salon Waste Diverted" },
+      { number: "100%", label: "Cruelty-Free Products" },
+      { number: "15+", label: "Years Master Artistry" },
+      { number: "5.0 ★", label: "Client Satisfaction" }
+    ]
+  };
+
+  const categories = client?.services?.length ? client.services : serviceCategories;
+  const plans = client?.plans?.length ? client.plans : pranaPlans;
+  const team = client?.team?.length ? client.team : teamMembers;
+  const reviews = client?.reviews?.length ? client.reviews : clientReviews;
+  const lookbooks = client?.lookbook?.length ? client.lookbook : lookbookItems;
+  const cityState = `${info.address.city}, ${info.address.state}`;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="space-y-20 sm:space-y-28 lg:space-y-36 pb-20 sm:pb-28">
+      {/* 1. Editorial Hero */}
+      <HeroSection hero={hero} shortName={shortName} />
+
+      {/* 2. Interactive Sanctuary Ambience Soundscape Bar */}
+      <SanctuaryAmbienceBar />
+
+      {/* 3. Infinite Brand & Certification Marquee */}
+      <LuxuryMarquee />
+
+      {/* 4. Interactive Booking Discovery Bar */}
+      <BookingDiscovery />
+
+      {/* 5. Brand Pillars / Stats Row */}
+      <BrandPillars stats={hero.stats} />
+
+      {/* 6. Brand Philosophy & Sanskrit Roots */}
+      <BrandStorySection shortName={shortName} />
+
+      {/* 7. Interactive Before & After Transformation Slider */}
+      <BeforeAfterSlider shortName={shortName} />
+
+      {/* 8. Services Directory Preview & Ritual Quiz */}
+      <HomeServicesPreview categories={categories} />
+
+      {/* 9. Interactive Botanical Alchemy Shelf */}
+      <BotanicalAlchemy />
+
+      {/* 10. Interactive 45-Second Ayurvedic Dosha Diagnostic Quiz */}
+      <DoshaWellnessQuiz />
+
+      {/* 11. Signature 4-Tier Stylist Structure Spotlight */}
+      <StylistStructureSection shortName={shortName} />
+
+      {/* 12. The Salon Difference (Dark Forest Green) */}
+      <TheDifferenceSection shortName={shortName} />
+
+      {/* 13. Interactive A Day at the Sanctuary Timeline */}
+      <SanctuaryExperienceTimeline shortName={shortName} />
+
+      {/* 12. Visual Lookbook & Transformation Showcase */}
+      <HomeLookbookSection lookbookItems={lookbooks} cityState={cityState} />
+
+      {/* 13. Master Artists & Specialists */}
+      <HomeTeamSection teamMembers={team} shortName={shortName} />
+
+      {/* 14. Wellness Membership Plans */}
+      <HomePlansSection plans={plans} />
+
+      {/* 15. First-Time Guest & Newbie Guide */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <NewbieGuide />
+      </section>
+
+      {/* 16. Verified Guest Experiences */}
+      <HomeReviewsSection reviews={reviews} />
+
+      {/* 17. Guest Comfort & Amenities */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SalonAmenities />
+      </section>
+
+      {/* 18. Location Sanctuary & Operating Hours */}
+      <HomeLocationSection info={info} shortName={shortName} />
+
+      {/* 19. Final Booking Call to Action */}
+      <HomeCtaSection shortName={shortName} />
     </div>
   );
 }
