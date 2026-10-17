@@ -15,7 +15,7 @@ export default function BrandStorySection({ shortName }: BrandStorySectionProps)
         <div className="lg:col-span-5 relative order-2 lg:order-1">
           <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-xl border border-[#EDE7DD]">
             <Image
-              src="/images/salon_interior_1.jpg"
+              src="/images/self-care.jpeg"
               alt={`${shortName} Salon Interior Sanctuary`}
               fill
               className="object-cover img-zoom-hover"
@@ -23,7 +23,7 @@ export default function BrandStorySection({ shortName }: BrandStorySectionProps)
             />
           </div>
           {/* Float badge */}
-          <div className="absolute top-6 -right-4 sm:-right-6 bg-[#FFFDF8] border border-[#EDE7DD] shadow-lg rounded-2xl p-4 max-w-[200px]">
+          <div className="absolute top-6 -left-4 sm:-right-6 bg-[#FFFDF8] border border-[#EDE7DD] shadow-lg rounded-2xl p-4 max-w-[200px]">
             <div className="font-sans font-extrabold text-2xl text-[#2B4035] not-italic">100%</div>
             <div className="text-[11px] text-[#5C5E58] font-medium leading-tight">
               Recycled salon waste & plant-based botanical care
